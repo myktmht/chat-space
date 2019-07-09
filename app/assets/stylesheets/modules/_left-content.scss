@@ -20,6 +20,8 @@
   &-edit {
     left: 250px;
     top: 40px;
+    color: white;
+
   }
   &-cog {
     left: 270px;
@@ -38,9 +40,11 @@
   &__name {
     font-size: 15px;
     padding-bottom: 5px;
+    color: white;
   }
 
   &__message {
     font-size: 11px;
+    color: white;
   }
 }

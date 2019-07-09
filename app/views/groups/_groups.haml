@@ -1,4 +1,6 @@
-- 3.times do
-  .groups
-    %p.groups__name グループ一覧
-    %p.groups__message 最新チャット内容
+- current_user.groups.each do |group|
+  = link_to group_messages_path(group) do
+    .groups
+      %p.groups__name
+        = group.name
+      %p.groups__message 最新チャット内容
