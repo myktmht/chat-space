@@ -10,6 +10,9 @@
 
   .bottom-content
     .submit
-      %p.submit__content type a message
-      %i.fa.fa-file-image-o
-    %p.submit__btn Send  
+    = form_for [@group, @message] do |f|
+      %p
+        = f.text_field :content, class: "submit__content", placeholder: 'type a message'
+        %label.chat-footer__file      
+          %i.fa.fa-file-image-o
+        = f.submit "Send", class: "submit__btn"
