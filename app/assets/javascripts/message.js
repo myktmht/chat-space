@@ -1,7 +1,14 @@
 $(document).on('turbolinks:load', function() {
-  $('#new_message').on('submit', function(e) {
+  $('#new_form').on('submit', function(e) {
     e.preventDefault();
     var message = new FormData(this);
-    console.log(message);
+    $.ajax({
+        type: 'POST',
+        url: '/messages',
+        data: FormData,
+        processData: false,
+        contenttype: false,
+        dataType: 'json'
+    })
   })
 });
