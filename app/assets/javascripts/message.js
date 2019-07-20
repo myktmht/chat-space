@@ -38,5 +38,12 @@ $(document).on('turbolinks:load', function(){
     .always(function(data) {
       $('.submit__btn').prop('disabled', false);
     })
+    $(function scrollBottom() {
+      var target = $('.chat').last();
+      var position = target.offset().top + $('.chat-wrapper').scrollTop();
+      $('.chat-wrapper').animate({
+        scrollTop: position
+      }, 300, 'swing');
+    });
   })
 });
