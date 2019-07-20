@@ -1,14 +1,15 @@
 $(document).on('turbolinks:load', function(){
   function bulidHTML(message) {
-    //var insertImage = '';
-    //if (message.image) {
-      //insertImage = `<img src="${message.image}">`;
-    //}
+    var insertImage = '';
+    if (message.image) {
+      insertImage = `<img src="${message.image}">`;
+    }
     var html =
       `<div class="chat" data-id="${message.id}">
         <p class="chat__user">${message.user_name}</p>
         <p class="chat__date">${message.date}</p>
         <p class="chat__content">${message.content}</p>
+        ${insertImage}
       </div>`
     return html;
   }
@@ -29,7 +30,13 @@ $(document).on('turbolinks:load', function(){
       console.log(data)
       var html = bulidHTML(data);
       $('.chat-wrapper').append(html);
-      $('.js-form__text-field').val('');
+      $('bottom-content').val('');
+    })
+    .fail(function(data) {
+      alert('エラーが発生したためメッセージは送信できませんでした')
+    })
+    .always(function(data) {
+      $('.submit__btn').prop('disabled', false);
     })
   })
 });
