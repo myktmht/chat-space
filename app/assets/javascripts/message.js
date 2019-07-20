@@ -27,7 +27,6 @@ $(document).on('turbolinks:load', function(){
       contentType: false
     })
     .done(function(data) {
-      console.log(data)
       var html = bulidHTML(data);
       $('.chat-wrapper').append(html);
       $('.form.js-message')[0].reset();
