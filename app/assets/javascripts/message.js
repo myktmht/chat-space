@@ -30,7 +30,7 @@ $(document).on('turbolinks:load', function(){
       console.log(data)
       var html = bulidHTML(data);
       $('.chat-wrapper').append(html);
-      $('bottom-content').val('');
+      $('.form.js-message')[0].reset();
     })
     .fail(function(data) {
       alert('エラーが発生したためメッセージは送信できませんでした')
