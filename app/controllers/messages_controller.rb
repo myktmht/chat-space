@@ -12,7 +12,7 @@ class MessagesController < ApplicationController
     if @message.save
       flash.now[:notice] = "メッセージを投稿しました"
       respond_to do |format|
-        format.html{ redirect_to group_messages_path(params[:group_id]) }
+        format.html{ redirect_to "group_messages_path(params[:group_id])" }
         format.json{ render json: @message }
       end 
     else
