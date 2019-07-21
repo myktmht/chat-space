@@ -33,6 +33,11 @@
     top: 28px;
   }
 }
+
+.chat-wrapper {
+  height: calc(100vh - 190px);
+  overflow: auto;
+}
   
 .chat {
   padding: 46px 40px 40px 40px;

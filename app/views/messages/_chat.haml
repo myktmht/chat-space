@@ -1,8 +1,8 @@
-.chat
+.chat{ "data-message-id": "#{message.id}"}
   %p.chat__user
     = message.user.name
   %p.chat__date
-    = message.created_at.strftime("%Y/%m/%d %H:%M")
+    = message.created_at.strftime("%Y年%m月%d日 %H時%M分")
   %p.chat__content
     = message.content
   %p.chat__image

@@ -115,3 +115,8 @@
     border: 0;
   }
 }
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
