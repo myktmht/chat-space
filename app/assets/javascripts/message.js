@@ -26,15 +26,15 @@ $(document).on('turbolinks:load', function(){
       processData: false,
       contentType: false
     })
-    .done(function(data) {
-      var html = bulidHTML(data);
+    .done(function(chat) {
+      var html = bulidHTML(chat);
       $('.chat-wrapper').append(html);
       $('.form.js-message')[0].reset();
     })
-    .fail(function(data) {
+    .fail(function(chat) {
       alert('エラーが発生したためメッセージは送信できませんでした')
     })
-    .always(function(data) {
+    .always(function(chat) {
       $('.submit__btn').prop('disabled', false);
     })
     $(function scrollBottom() {
