@@ -26,9 +26,9 @@
       #chat-group-users.clearfix
         %ul#memberlist
           %li.memberlist
-          = current_user.name
-          = hidden_field_tag('group[user_ids][]', current_user.id)
-        // render partial: "groups/user", collection: @group.users(current_user)  
+            = current_user.name
+            = hidden_field_tag('group[user_ids][]', current_user.id)
+          = render partial: "groups/user", collection: @group.users(current_user) 
   .chat-group-form__field.clearfix
     .chat-group-form__field--left
     .chat-group-form__field--right

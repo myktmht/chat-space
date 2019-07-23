@@ -16,10 +16,16 @@ $(document).on('turbolinks:load', function() {
 
 
 function buildHTML(user) {
-  var html = `<li class="addinglist" data-id"${ user.id }" data-name"${ user.name }">${ user.name }
+  var html = `<li class="addinglist" data-id="${ user.id }" data-name="${ user.name }">${ user.name }
              <div class="chat-group-user__add">追加</div></li>`;
   return html;           
 }
+
+function buildUserList(user) {
+    var html = `<li class="memberlist">${ user.data('name') }<div type="button" class="chat-group-user__remove">削除</div><input type="hidden" name='group[user_ids][]' value="${ user.data('id') }" class="user_id"></li>`;
+    return html;
+  }
+
 
   function ajaxsearch() {
     var word = $("#chatments").val();
@@ -42,4 +48,10 @@ function buildHTML(user) {
       alert('一致するユーザーがいません');
     });
     return false;
+}
+
+  function addIdName(user) {
+    user.remove();
+    var addhtml = buildUserList(user);
+    $("#memberlist").append(addhtml);
   }
