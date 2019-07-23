@@ -1,0 +1,6 @@
+- if user.name != current_user.name
+  %li.list
+
+    = user.name
+    %div.chat-group-user__remove{type: "button"} 削除
+    = hidden_field_tag('group[user_ids][]', user.id)
