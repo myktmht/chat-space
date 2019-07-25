@@ -2,7 +2,6 @@ $(document).on('turbolinks:load', function(){
 
   function bulidHTML(message) {
     var insertImage = message.image.url? `<image class="lower-message_image" src="${message.image.url}">`:"";
-    console.log(insertImage);
     var html =
       `<div class="chat" data-id="${message.id}">
         <p class="chat__user">${message.user_name}</p>
@@ -18,7 +17,6 @@ $(document).on('turbolinks:load', function(){
     var message = new FormData($(this).get(0));
     var url = window.location.pathname;
     var last_message_id = $('.chat').last().data('id');
-    console.log(last_message_id)
     $.ajax({
       url: url,
       type: 'POST',
@@ -28,7 +26,6 @@ $(document).on('turbolinks:load', function(){
       contentType: false
     })
     .done(function(chat) {
-      console.log(chat);
       var html = bulidHTML(chat);
       $('.chat-wrapper').append(html);
       $('.form.js-message')[0].reset();
