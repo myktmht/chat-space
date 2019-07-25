@@ -1,9 +1,7 @@
 $(document).on('turbolinks:load', function(){
+
   function bulidHTML(message) {
-    var insertImage = '';
-    if (message.image) {
-      insertImage = `<img src="${message.image}">`;
-    }
+    var insertImage = message.image.url? `<image class="lower-message_image" src="${message.image.url}">`:"";
     var html =
       `<div class="chat" data-id="${message.id}">
         <p class="chat__user">${message.user_name}</p>
@@ -18,6 +16,7 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
     var message = new FormData($(this).get(0));
     var url = window.location.pathname;
+    var last_message_id = $('.chat').last().data('id');
     $.ajax({
       url: url,
       type: 'POST',
@@ -45,4 +44,30 @@ $(document).on('turbolinks:load', function(){
       }, 300, 'swing');
     });
   })
+
+  var reloadMessages = function () {
+    if (window.location.href.match(/\/groups\/\d+\/api\/messages/)){
+      var last_message_id = $('.chat').last().data('id');
+    $.ajax({
+      url: "api/messages",
+      type: 'GET',
+      dataType: 'json',
+      data: {last_id: last_message_id}
+    })
+
+    .done(function(messages) {
+      messages.forEach(function(message) {
+        var insertHTML = bulidHTML(message)
+        $('#message').append(insertHTML)
+      });
+        
+      $('chat-wrapper').animate({
+        scrollTop: $('.chat-weapper')[0].scrollHeight}, 'fast');
+      })
+      .fail(function() {
+        alert('自動更新に失敗しました')
+      });
+    }
+  };
+  setInterval(reloadMessages, 5000)
 });

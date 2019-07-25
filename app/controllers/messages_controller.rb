@@ -3,8 +3,12 @@ class MessagesController < ApplicationController
   before_action :index_variables, only:[:index, :create]
 
   def index
-      @message = Message.new
-      @messages = @group.messages.includes(:user)
+    @message = Message.new
+    respond_to do |format|
+      format.html
+      format.json
+    end
+    @messages = @group.messages.includes(:user)
   end
 
   def create
