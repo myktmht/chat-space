@@ -1,4 +1,4 @@
-.chat{ "data-message-id": "#{message.id}"}
+.chat{ "data-id": "#{message.id}"}
   %p.chat__user
     = message.user.name
   %p.chat__date
@@ -7,4 +7,4 @@
     = message.content
   %p.chat__image
     - if message.image.present?
-      = image_tag(message.image)
+      = image_tag message.image, class: 'lower-message__image'
