@@ -44,8 +44,7 @@ before_fork do |server, worker|
     begin
       sig = (worker.nr + 1) >= server.worker_processes ?
       Process.kill(sig, File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH => e
-      logger.error e
+    rescue Errno::ENOENT, Errno::ESRCH
     end
   end
 end
