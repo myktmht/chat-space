@@ -1,4 +1,4 @@
-#サーバ上でのアプリケーションが設置されているディレクトリを変数に入れる
+#サーバ上でのアプリケーションコードが設置されているディレクトリを変数に入れておく
 app_path = File.expand_path('../../', __FILE__)
 
 #アプリケーションサーバの性能を決定する
@@ -7,7 +7,7 @@ worker_processes 1
 #アプリケーションの設置されているディレクトリを指定
 working_directory app_path
 
-#Unicornの軌道に必要なファイルの設置場所を指定
+#Unicornの起動に必要なファイルの設置場所を指定
 pid "#{app_path}/tmp/pids/unicorn.pid"
 
 #ポート番号を指定
@@ -22,7 +22,7 @@ stdout_path "#{app_path}/log/unicorn.stdout.log"
 #Railsアプリケーションの応答を待つ上限時間を設定
 timeout 60
 
-#以下は設定
+#以下は応用的な設定なので説明は割愛
 
 preload_app true
 GC.respond_to?(:copy_on_write_friendly=) && GC.copy_on_write_friendly = true
@@ -42,9 +42,10 @@ before_fork do |server, worker|
   old_pid = "#{server.config[:pid]}.oldbin"
   if File.exist?(old_pid) && server.pid != old_pid
     begin
-      sig = (worker.nr + 1) >= server.worker_processes ?
+      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
       Process.kill(sig, File.read(old_pid).to_i)
-    rescue Errno::ENOENT, Errno::ESRCH
+    rescue Errno::ENOENT, Errno::ESRCH => e
+      logger.error e
     end
   end
 end
