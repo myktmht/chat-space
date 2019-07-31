@@ -1,12 +1,12 @@
 # config valid for current version and patch releases of Capistrano
 # capistranoのバージョンを記載。固定のバージョンを利用し続け、バージョン変更によるトラブルを防止する
-lock "~> 3.11.0"
+lock '~> 3.11.0'
 
 # Capistranoのログの表示に利用する
-set :application, "chat-space"
+set :application, 'chat-space'
 
 # どのリポジトリからアプリをpullするかを指定する
-set :repo_url, "git@example.com:myktmht/chat-space.git"
+set :repo_url, 'git@github.com:myktmht/chat-space.git'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
