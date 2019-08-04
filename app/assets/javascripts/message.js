@@ -60,7 +60,7 @@ $(document).on('turbolinks:load', function(){
       });
         
       $('chat-wrapper').animate({
-        scrollTop: $('.chat-weapper')[0].scrollHeight}, 'fast');})
+        scrollTop: $('.chat-weapper')[0].scrollHeight},3000, 'fast');})
       .fail(function() {
         alert('自動更新に失敗しました')
       });
