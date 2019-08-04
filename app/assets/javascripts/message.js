@@ -41,7 +41,7 @@ $(document).on('turbolinks:load', function(){
       var position = target.offset().top + $('.chat-wrapper').scrollTop();
       $('.chat-wrapper').animate({
         scrollTop: position
-      }, 'fast');
+      },300, 'swing');
     });
   })
 
