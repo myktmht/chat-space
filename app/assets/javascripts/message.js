@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function(){
       var target = $('.chat').last();
       var position = target.offset().top + $('.chat-wrapper').scrollTop();
       $('.chat-wrapper').animate({
-        scrollTop: position
+        scrollBottom: position
       },300, 'swing');
     });
   })
