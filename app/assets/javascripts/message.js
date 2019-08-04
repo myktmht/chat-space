@@ -39,9 +39,7 @@ $(document).on('turbolinks:load', function(){
     $(function scrollBottom() {
       var target = $('.chat').last();
       var position = target.offset().top + $('.chat-wrapper').scrollTop();
-      $('.chat-wrapper').animate({
-        scrollBottom: position
-      },300, 'swing');
+      $('.chat-wrapper').animate({scrollTop: position}, 1200, 'swing');
     });
   })
 
@@ -58,12 +56,11 @@ $(document).on('turbolinks:load', function(){
     .done(function(messages) {
       messages.forEach(function(message) {
         var insertHTML = bulidHTML(message)
-        $('#message').append(insertHTML)
+        $('chat-wrapper').append(insertHTML)
       });
         
       $('chat-wrapper').animate({
-        scrollTop: $('.chat-weapper')[0].scrollHeight}, 'fast');
-      })
+        scrollTop: $('.chat-weapper')[0].scrollHeight}, 'fast');})
       .fail(function() {
         alert('自動更新に失敗しました')
       });
